@@ -9,11 +9,11 @@
 
   "repository": {
     "type": "git",
-    "url": "git://github.com/hubot-scripts/hubot-rollin.git"
+    "url": "git://github.com/yeah568/hubot-rollin.git"
   },
 
   "bugs": {
-    "url": "https://github.com/hubot-scripts/hubot-rollin/issues"
+    "url": "https://github.com/yeah568/hubot-rollin/issues"
   },
 
   "dependencies": {
