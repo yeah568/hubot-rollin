@@ -39,7 +39,7 @@
     "sinon-chai": "^2.7.0"
   },
 
-  "main": "index.coffee",
+  "main": "src/rollin.js",
 
   "scripts": {
     "test": "grunt test"
