@@ -1,28 +1,21 @@
 {
   "name": "hubot-rollin",
   "description": "A hubot script that allows for advanced dice rolls.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "James Liu <james@jamesliu.ca>",
   "license": "MIT",
-
   "keywords": "hubot, hubot-scripts, dice, roll, rpg",
-
   "repository": {
     "type": "git",
     "url": "git://github.com/yeah568/hubot-rollin.git"
   },
-
   "bugs": {
     "url": "https://github.com/yeah568/hubot-rollin/issues"
   },
-
-  "dependencies": {
-  },
-
+  "dependencies": {},
   "peerDependencies": {
     "hubot": "2.x"
   },
-
   "devDependencies": {
     "hubot-test-helper": "^1.3.0",
     "chai": "^2.1.1",
@@ -38,9 +31,7 @@
     "sinon": "^1.13.0",
     "sinon-chai": "^2.7.0"
   },
-
   "main": "src/rollin.js",
-
   "scripts": {
     "test": "grunt test"
   }
