@@ -1,7 +1,7 @@
 {
   "name": "hubot-rollin",
   "description": "A hubot script that allows for advanced dice rolls.",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "author": "James Liu <james@jamesliu.ca>",
   "license": "MIT",
 
