@@ -8,7 +8,7 @@
 //   None
 //
 // Commands:
-//   hubot roll <N>dX - <sets:?><num?:>d<sides><+/- mod>
+//   hubot roll <N>dX - <sets:?><num?:>d<sides><+/- mod> <reason>
 //
 // Notes:
 //   <optional notes required for the script>
@@ -17,7 +17,7 @@
 //   yeah568
 
 module.exports = robot => {
-  robot.respond(/roll (?:([0-9]*):)?([0-9]*)?d([0-9]*)(?:([+-][0-9]*))?/, res => {
+  robot.respond(/roll (?:([0-9]*):)?([0-9]*)?d([0-9]*)(?:([+-][0-9]*))?( .*)?/, res => {
     if (!res.match[3]) {
       res.reply('invalid parameters');
       return;
@@ -27,6 +27,7 @@ module.exports = robot => {
     const num = res.match[2] ? parseInt(res.match[2], 10) : 1;
     const sides = parseInt(res.match[3], 10);
     const mod = res.match[4] ? parseInt(res.match[4], 10) : 0;
+    const reason = res.match[5] ? res.match[5] : '';
 
     // more validation
     if (isNaN(num) || isNaN(sides)) {
@@ -72,7 +73,7 @@ module.exports = robot => {
       rolls.push(ret);
     }
 
-    res.reply(`rolled:\n${rolls.join('\n')}`);
+    res.reply(`rolled${reason}:\n${rolls.join('\n')}`);
     return;
   })
 }
