@@ -1,16 +1,20 @@
 // Description:
 //   A hubot script that allows for advanced dice rolls.
 //
+// Dependencies:
+//   None
+//
 // Configuration:
+//   None
 //
 // Commands:
-//   hubot roll <sets:?><num?:>d<sides><+/- mod>
+//   hubot roll <N>dX - <sets:?><num?:>d<sides><+/- mod>
 //
 // Notes:
 //   <optional notes required for the script>
 //
 // Author:
-//   James Liu <james@jamesliu.ca>
+//   yeah568
 
 module.exports = robot => {
   robot.respond(/roll (?:([0-9]*):)?([0-9]*)?d([0-9]*)(?:([+-][0-9]*))?/, res => {
@@ -53,17 +57,17 @@ module.exports = robot => {
 
       ret += `${results.join(', ')}.`;
 
+	    const sum = results.reduce((a, b) => a + b, 0);
+
       if (num > 1) {
-        ret += ' ';
-        const sum = results.reduce((a, b) => a + b, 0);
-        if (mod === 0) {
-          ret += `Sum: ${sum}.`;
-        } else if (mod > 0) {
-          ret += `Sum: ${sum} + ${mod} = ${sum + mod}.`;
-        } else if (mod < 0) {
-          ret += `Sum: ${sum} - ${Math.abs(mod)} = ${sum + mod}.`;
-        }
+        ret += ` Sum: ${sum}.`;
       }
+
+      if (mod > 0) {
+	      ret += ` Mod: +${mod} = ${sum + mod}.`;
+	    } else if (mod < 0) {
+	      ret += ` Mod: -${Math.abs(mod)} = ${sum + mod}.`;
+	    }
 
       rolls.push(ret);
     }
