@@ -17,7 +17,7 @@
 //   yeah568
 
 module.exports = robot => {
-  robot.respond(/roll (?:([0-9]*):)?([0-9]*)?d([0-9]*)(?:([+-][0-9]*))?( .*)?/, res => {
+  robot.respond(/roll (?:([0-9]*):)?([0-9]*)?d([0-9]*)(?:([+-][0-9]*))?( .*)?/i, res => {
     if (!res.match[3]) {
       res.reply('invalid parameters');
       return;
@@ -28,6 +28,9 @@ module.exports = robot => {
     const sides = parseInt(res.match[3], 10);
     const mod = res.match[4] ? parseInt(res.match[4], 10) : 0;
     const reason = res.match[5] ? res.match[5] : '';
+    
+    const maxDice = process.env.ROLLIN_MAX_DICE || 100;
+    const maxSides = process.env.ROLLIN_MAX_SIDES || 200;
 
     // more validation
     if (isNaN(num) || isNaN(sides)) {
@@ -36,12 +39,17 @@ module.exports = robot => {
     }
 
     if (num <= 0 || sides <= 0) {
-      res.reply('num and sides must be positive.');
+      res.reply('number of dice and sides must be positive.');
       return;
     }
 
-    if (num > 100 || sides > 200) {
-      res.reply('num or sides too large.');
+    if (num > maxDice) {
+      res.reply(`too many dice. only ${maxDice} dice can be rolled at a time.`);
+      return;
+    }
+    
+    if (sides > maxSides) {
+      res.reply(`too many sides. dice can only have up to ${maxSides} sides.`);
       return;
     }
 
@@ -75,5 +83,6 @@ module.exports = robot => {
 
     res.reply(`rolled${reason}:\n${rolls.join('\n')}`);
     return;
-  })
-}
+  });
+};
+
